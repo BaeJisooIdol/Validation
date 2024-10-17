@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <form action="" id="form" class="form">
+        <h2>Welcom to <span class="shop">Light House Shop!</span> </h2>
+        <div class="form_group">
+            <label for="">Full Name</label>
+            <input type="text" class="input" id="fullname" name="fullname">
+            <span class="message"></span>
+        </div>
+
+        <div class="form_group">
+            <label for="">Email</label>
+            <input type="text" class="input" id="email" name="email" placeholder="Ex: dang@gmail.com">
+            <span class="message"></span>
+        </div>
+
+        <div class="form_group">
+            <label for="">Password</label>
+            <input type="text" class="input" id="password" name="password">
+            <span class="message"></span>
+        </div>
+
+        <div class="form_group">
+            <label for="">Repeat password</label>
+            <input type="text" class="input" id="repeatPassword" name="repeatPassword">
+            <span class="message"></span>
+        </div>
+
+        <div class="button">
+            <button class="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+    <script src="./validation.js"></script>
+    <script>
+        Validation({
+            form: '#form',
+            message: '.message',
+            rules: [
+                Validation.isRequired('#fullname'),
+                Validation.isRequired('#email'),
+                Validation.isEmail('#email'),
+                Validation.isRequired('#password'),
+                Validation.isPassword('#password', 6),
+                Validation.isRequired('#repeatPassword'),
+                Validation.isrepeatPassword('#repeatPassword', function () {
+                    return document.querySelector('#password').value;
+                }),
+            ],
+            onSubmit: function(data) {
+                console.log(data);
+            }
+        })
+    </script>
+</body>
+</html>
